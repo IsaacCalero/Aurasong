@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/aurasong.css' %}">
+
+<div class="contenedor">
+  <h1>✨ Canciones de Aurasong</h1>
+  {% for cancion in canciones %}
+    <div class="card">
+      <h2>{{ cancion.titulo }}</h2>
+      <p><strong>Artista:</strong> {{ cancion.artista }}</p>
+      {% if cancion.url_preview %}
+        <audio controls>
+          <source src="{{ cancion.url_preview }}" type="audio/mpeg">
+        </audio>
+      {% else %}
+        <p class="mensaje">Sin preview disponible 🌫️</p>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>No hay canciones en la base de datos todavía...</p>
+  {% endfor %}
+</div>
